@@ -1,0 +1,831 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chá de Casa Nova | Convite Especial</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --fundo: #f7f4ee;
+  --claro: #fffdf9;
+  --verde: #59654b;
+  --verde-escuro: #414b37;
+  --dourado: #b49b74;
+  --texto: #57594d;
+  --linha: #e7dfd1;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 10% 12%, #e8e1d4 0%, transparent 38%),
+    radial-gradient(circle at 90% 85%, #e7e9da 0%, transparent 36%);
+  z-index: -1;
+}
+
+.convite {
+  width: min(94%, 630px);
+  margin: 28px auto;
+  padding: 12px;
+  background: rgba(255,253,249,.91);
+  border: 1px solid #d9ceb9;
+  border-radius: 5px 65px 5px 65px;
+  box-shadow: 0 25px 70px #4e513515;
+  animation: entrada 1.2s ease both;
+}
+
+.conteudo {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #e7ddcd;
+  border-radius: 3px 53px 3px 53px;
+  padding: 45px 35px 28px;
+}
+
+.folha {
+  position: absolute;
+  color: #8b987a;
+  font-size: 70px;
+  opacity: .17;
+  pointer-events: none;
+  animation: balanco 7s ease-in-out infinite;
+}
+
+.folha.a { top: 120px; left: -25px; }
+.folha.b { top: 330px; right: -25px; animation-delay: -3s; }
+
+.selo {
+  text-align: center;
+  color: var(--verde);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 22px;
+}
+
+.icone-casa {
+  display: block;
+  width: 105px;
+  height: 100px;
+  margin: 0 auto 8px;
+}
+
+.icone-casa path {
+  stroke: var(--verde);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: desenhar 2.8s .3s forwards;
+}
+
+.icone-casa .coracao {
+  fill: #b9967f;
+  stroke: none;
+  stroke-dasharray: none;
+  stroke-dashoffset: 0;
+  animation: pulsar 3s infinite;
+  transform-origin: center;
+}
+
+h1, h2 {
+  font-family: 'Italiana', serif;
+  font-weight: 400;
+}
+
+h1 {
+  color: var(--verde-escuro);
+  text-align: center;
+  font-size: clamp(58px, 11vw, 86px);
+  line-height: .96;
+  margin: 10px 0 20px;
+}
+
+h1 span { display: block; color: var(--dourado); }
+
+.subtitulo {
+  max-width: 380px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1.9;
+  font-size: 13px;
+  color: #817c70;
+}
+
+.separador {
+  text-align: center;
+  color: var(--dourado);
+  font-size: 17px;
+  margin: 28px 0;
+  letter-spacing: 12px;
+}
+
+.data-local {
+  background: linear-gradient(145deg, #69755b, #46523e);
+  color: white;
+  display: grid;
+  grid-template-columns: 125px 1fr;
+  align-items: center;
+  gap: 22px;
+  padding: 30px 25px;
+  border-radius: 3px 30px 3px 30px;
+  box-shadow: 0 15px 35px #52604624;
+}
+
+.data {
+  border-right: 1px solid #ffffff65;
+  text-align: center;
+  padding-right: 22px;
+}
+
+.dia {
+  font-family: 'Italiana', serif;
+  font-size: 80px;
+  line-height: .95;
+}
+
+.mes {
+  font-size: 10px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+.dados { display: grid; gap: 22px; }
+
+.rotulo {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #d6ddcf;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.valor {
+  font-family: 'Italiana', serif;
+  font-size: 30px;
+}
+
+.titulo-secao {
+  color: var(--verde-escuro);
+  font-size: clamp(34px, 7vw, 43px);
+  text-align: center;
+  margin: 42px 0 8px;
+}
+
+.descricao-secao {
+  text-align: center;
+  font-size: 12px;
+  color: #888277;
+  line-height: 1.8;
+  margin: 0 0 23px;
+}
+
+.informacoes {
+  display: grid;
+  gap: 12px;
+}
+
+.informacao {
+  display: flex;
+  gap: 16px;
+  padding: 19px 17px;
+  border: 1px solid var(--linha);
+  background: #faf7f1;
+  border-radius: 3px 22px 3px 22px;
+  transition: .35s;
+}
+
+.informacao:hover {
+  transform: translateY(-3px);
+  background: white;
+  box-shadow: 0 12px 30px #0000000a;
+}
+
+.emoji {
+  width: 45px;
+  height: 45px;
+  min-width: 45px;
+  display: grid;
+  place-items: center;
+  background: #e9eadf;
+  border-radius: 50%;
+  font-size: 21px;
+}
+
+.informacao h3 {
+  font-size: 12px;
+  color: var(--verde-escuro);
+  margin: 4px 0 6px;
+  letter-spacing: .7px;
+}
+
+.informacao p {
+  margin: 0;
+  line-height: 1.8;
+  font-size: 12px;
+  color: #777366;
+}
+
+.informacao strong { color: #45493d; }
+
+/* PRESENTES */
+
+.presentes {
+  margin: 43px 0 0;
+}
+
+.sobretitulo {
+  display: block;
+  text-align: center;
+  color: var(--dourado);
+  letter-spacing: 3px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.presentes .titulo-secao { margin-top: 10px; }
+
+.caixa-presentes {
+  background: linear-gradient(140deg, #f5f1e8, #ebe9dc);
+  border: 1px solid #d8d0bf;
+  border-radius: 3px 29px 3px 29px;
+  overflow: hidden;
+}
+
+.caixa-presentes summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  color: var(--verde-escuro);
+}
+
+.caixa-presentes summary::-webkit-details-marker { display: none; }
+
+.icone-presente {
+  font-size: 24px;
+  background: #e3e7d8;
+  border-radius: 50%;
+  height: 46px;
+  width: 46px;
+  min-width: 46px;
+  display: grid;
+  place-items: center;
+}
+
+.resumo-texto { flex: 1; }
+
+.resumo-texto strong {
+  display: block;
+  font-size: 13px;
+}
+
+.resumo-texto small {
+  display: block;
+  font-size: 11px;
+  margin-top: 5px;
+  color: #8b8477;
+}
+
+.seta {
+  font-size: 21px;
+  transition: transform .3s;
+}
+
+.caixa-presentes[open] .seta {
+  transform: rotate(180deg);
+}
+
+.lista-conteudo {
+  padding: 20px 15px 25px;
+  background: #fffdf9b8;
+  border-top: 1px solid #ddd6c9;
+  animation: aparecer .5s ease;
+}
+
+.lista-intro {
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.8;
+  color: #827d70;
+  max-width: 350px;
+  margin: 0 auto 22px;
+}
+
+.categorias {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 13px;
+}
+
+.categoria {
+  background: #fffdf9;
+  padding: 20px 17px;
+  border: 1px solid #e8e1d5;
+  border-radius: 3px 23px 3px 23px;
+}
+
+.categoria h3 {
+  color: var(--verde-escuro);
+  font-size: 14px;
+  margin: 0 0 15px;
+}
+
+.categoria ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.categoria li {
+  font-size: 12px;
+  color: #716d61;
+  line-height: 1.6;
+  padding: 7px 0;
+  border-bottom: 1px solid #f0ece4;
+}
+
+.categoria li:last-child { border: none; }
+
+.categoria li::before {
+  content: "•";
+  color: var(--dourado);
+  margin-right: 9px;
+}
+
+.agradecimento {
+  font-family: 'Italiana', serif;
+  text-align: center;
+  font-size: 26px;
+  color: var(--verde);
+  margin: 24px 0 0;
+}
+
+.final {
+  text-align: center;
+  padding: 35px 0 15px;
+}
+
+.final small {
+  color: var(--dourado);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.final p {
+  font-family: 'Italiana', serif;
+  font-size: 33px;
+  color: var(--verde-escuro);
+  line-height: 1.3;
+  margin: 15px 0;
+}
+
+.botao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin: 5px auto 25px;
+  padding: 14px 25px;
+  border-radius: 50px;
+  border: 1px solid #adb49e;
+  background: transparent;
+  color: var(--verde-escuro);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.botao:hover {
+  background: var(--verde);
+  color: white;
+  transform: translateY(-3px);
+}
+
+.rodape {
+  text-align: center;
+  color: #9e988d;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.assinatura {
+  text-align: center;
+  font-size: 9px;
+  color: #a7a195;
+  letter-spacing: .4px;
+  margin-top: 19px;
+}
+
+.assinatura a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.revelar {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity .9s ease, transform .9s ease;
+}
+
+.revelar.visivel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes entrada {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes desenhar {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes pulsar {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes balanco {
+  0%,100% { transform: rotate(-6deg); }
+  50% { transform: rotate(6deg); }
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media(max-width:500px) {
+  .convite {
+    margin: 10px auto;
+    padding: 9px;
+    border-radius: 3px 45px 3px 45px;
+  }
+
+  .conteudo {
+    padding: 35px 20px 25px;
+    border-radius: 3px 38px 3px 38px;
+  }
+
+  .data-local {
+    grid-template-columns: 95px 1fr;
+    gap: 15px;
+    padding: 25px 16px;
+  }
+
+  .data { padding-right: 14px; }
+  .dia { font-size: 68px; }
+  .mes { font-size: 8px; }
+  .valor { font-size: 25px; }
+
+  .categorias { grid-template-columns: 1fr; }
+
+  .final p { font-size: 29px; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+  .revelar { opacity: 1; transform: none; }
+  .icone-casa path { stroke-dashoffset: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<main class="convite">
+<div class="conteudo">
+
+<div class="folha a">❧</div>
+<div class="folha b">❧</div>
+
+<div class="selo">Um novo capítulo começa</div>
+
+<svg class="icone-casa" viewBox="0 0 100 94" aria-hidden="true">
+  <path d="M16 49 50 20l34 29M24 45v34h52V45M39 79V55h22v24"/>
+  <path d="M70 29V19h8v17M32 79h36"/>
+  <path class="coracao" d="M50 67c-2-3-7-6-7-10a4.4 4.4 0 0 1 7-3.3A4.4 4.4 0 0 1 57 57c0 4-5 7-7 10Z"/>
+</svg>
+
+<h1>Chá de <span>casa nova</span></h1>
+
+<p class="subtitulo">
+  A casa é nova, mas a alegria é ainda maior quando
+  podemos compartilhar esse momento com pessoas especiais.
+</p>
+
+<div class="separador">✦</div>
+
+<section class="data-local">
+  <div class="data">
+    <div class="dia">28</div>
+    <div class="mes">NOVEMBRO</div>
+  </div>
+
+  <div class="dados">
+    <div>
+      <span class="rotulo">Sábado • Horário</span>
+      <span class="valor">13 horas</span>
+    </div>
+
+    <div>
+      <span class="rotulo">Nosso encontro será no</span>
+      <span class="valor">Clube Atalaia</span>
+    </div>
+  </div>
+</section>
+
+<section class="revelar">
+  <h2 class="titulo-secao">Para celebrar com a gente</h2>
+  <p class="descricao-secao">
+    Alguns combinados para o nosso encontro
+  </p>
+
+  <div class="informacoes">
+
+    <div class="informacao">
+      <div class="emoji">🍻</div>
+      <div>
+        <h3>OPEN COOLER</h3>
+        <p>Cada um leva o que for beber.</p>
+      </div>
+    </div>
+
+    <div class="informacao">
+      <div class="emoji">🥩</div>
+      <div>
+        <h3>CONTRIBUIÇÃO DE CARNE</h3>
+        <p>
+          <strong>Casal:</strong> 1 kg de carne.<br>
+          <strong>Individual:</strong> ½ kg de carne.
+        </p>
+      </div>
+    </div>
+
+    <div class="informacao">
+      <div class="emoji">🎁</div>
+      <div>
+        <h3>UM MIMO PARA O NOVO LAR</h3>
+        <p>
+          Não se esqueçam de levar o presente
+          para o chá de casa nova!
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="presentes revelar">
+  <span class="sobretitulo">Para nossa nova história</span>
+
+  <h2 class="titulo-secao">Sugestões de presentes</h2>
+
+  <p class="descricao-secao">
+    Um toque de carinho para transformar a casa em lar.
+    Se estiver em dúvida sobre o presente,
+    separamos algumas ideias.
+  </p>
+
+  <details class="caixa-presentes">
+
+    <summary>
+      <span class="icone-presente">🎁</span>
+
+      <span class="resumo-texto">
+        <strong>Ver a lista de presentes</strong>
+        <small>Opções para todos os cantinhos da casa</small>
+      </span>
+
+      <span class="seta">⌄</span>
+    </summary>
+
+    <div class="lista-conteudo">
+      <p class="lista-intro">
+        Escolha com carinho o que combinar mais com você.
+        Cada presente fará parte do nosso novo começo.
+      </p>
+
+      <div class="categorias">
+
+        <div class="categoria">
+          <h3>🍽️ Cozinha</h3>
+          <ul>
+            <li>Jogo de copos</li>
+            <li>Jogo de pratos</li>
+            <li>Jogo de xícaras</li>
+            <li>Jogo de talheres</li>
+            <li>Jogo de panelas</li>
+            <li>Frigideira</li>
+            <li>Travessas</li>
+            <li>Assadeiras</li>
+            <li>Potes organizadores</li>
+            <li>Jogo de sobremesa</li>
+            <li>Jarra de vidro</li>
+            <li>Tábua de corte</li>
+            <li>Escorredor de louças</li>
+            <li>Panos de prato</li>
+            <li>Kit de utensílios de cozinha</li>
+            <li>Saladeira</li>
+          </ul>
+        </div>
+
+        <div class="categoria">
+          <h3>🛏️ Quarto</h3>
+          <ul>
+            <li>Travesseiros</li>
+            <li>Jogo de cama</li>
+            <li>Lençóis</li>
+            <li>Fronhas</li>
+            <li>Manta para cama</li>
+            <li>Cobertor</li>
+            <li>Protetor de colchão</li>
+            <li>Cabides</li>
+          </ul>
+        </div>
+
+        <div class="categoria">
+          <h3>🛁 Banheiro</h3>
+          <ul>
+            <li>Jogo de toalhas de banho</li>
+            <li>Toalhas de rosto</li>
+            <li>Tapetes de banheiro</li>
+            <li>Kit para banheiro</li>
+            <li>Lixeira de banheiro</li>
+            <li>Porta-sabonete líquido</li>
+          </ul>
+        </div>
+
+        <div class="categoria">
+          <h3>🛋️ Sala e decoração</h3>
+          <ul>
+            <li>Tapetes</li>
+            <li>Mantas para sofá</li>
+            <li>Almofadas</li>
+            <li>Vasos decorativos</li>
+            <li>Bandejas decorativas</li>
+            <li>Difusor de ambiente</li>
+            <li>Porta-retratos</li>
+          </ul>
+        </div>
+
+        <div class="categoria">
+          <h3>🧺 Lavanderia e organização</h3>
+          <ul>
+            <li>Cesto de roupas</li>
+            <li>Baldes</li>
+            <li>Rodo e vassoura</li>
+            <li>Pá de lixo</li>
+            <li>Varal de chão</li>
+            <li>Prendedores de roupa</li>
+            <li>Organizadores multiuso</li>
+            <li>Lixeiras</li>
+            <li>Panos de limpeza</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="agradecimento">
+        Obrigada pelo carinho!
+      </div>
+    </div>
+  </details>
+</section>
+
+<div class="separador">✦</div>
+
+<div class="final revelar">
+  <small>Com carinho</small>
+  <p>
+    Esperamos vocês para comemorar
+    esse momento especial com a gente! ❤️
+  </p>
+</div>
+
+<button class="botao" onclick="compartilhar()">
+  ↗ Compartilhar convite
+</button>
+
+<div class="rodape">
+  Um dia especial • 28.11.2026
+</div>
+
+<div class="assinatura">
+  Criado por Caroline Medeiros ·
+  <a href="https://wa.me/5535992416110" target="_blank" rel="noopener noreferrer">
+    (35) 99241-6110
+  </a>
+</div>
+
+</div>
+</main>
+
+<script>
+const elementos = document.querySelectorAll('.revelar');
+
+if ('IntersectionObserver' in window) {
+  const observador = new IntersectionObserver((entradas) => {
+    entradas.forEach(entrada => {
+      if (entrada.isIntersecting) {
+        entrada.target.classList.add('visivel');
+        observador.unobserve(entrada.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  elementos.forEach(elemento => observador.observe(elemento));
+} else {
+  elementos.forEach(elemento => elemento.classList.add('visivel'));
+}
+
+async function compartilhar() {
+  const texto = `🎉 CHÁ DE CASA NOVA 🏡❤️
+
+📅 Data: 28/11/2026
+⏰ Horário: 13h
+📍 Local: Clube Atalaia
+
+🍻 Open Cooler:
+Cada um leva o que for beber.
+
+🥩 Contribuição de carne:
+Casal: 1 kg de carne.
+Individual: ½ kg de carne.
+
+🎁 Não se esqueçam de levar o presente para o chá de casa nova!
+
+Esperamos vocês para comemorar esse momento especial com a gente! ❤️`;
+
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: 'Chá de Casa Nova',
+        text: texto
+      });
+      return;
+    } catch (erro) {
+      if (erro.name === 'AbortError') return;
+    }
+  }
+
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(texto);
+    } else {
+      const campo = document.createElement('textarea');
+      campo.value = texto;
+      campo.style.position = 'fixed';
+      campo.style.opacity = '0';
+      document.body.appendChild(campo);
+      campo.select();
+      const copiado = document.execCommand('copy');
+      document.body.removeChild(campo);
+      if (!copiado) throw new Error('Cópia não permitida');
+    }
+    alert('Convite copiado! Agora é só compartilhar.');
+  } catch (erro) {
+    alert('Não foi possível copiar automaticamente.');
+  }
+}
+</script>
+
+</body>
+</html>
